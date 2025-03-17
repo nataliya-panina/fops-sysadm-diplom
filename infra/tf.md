@@ -12,7 +12,7 @@ terraform {
             version="0.129.0"
         }
     }
-    required_version="~>1.8.4"
+    required_version="~>1.11.2"
 }
 # authentication
 provider "yandex" {
