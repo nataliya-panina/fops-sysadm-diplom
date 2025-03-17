@@ -3,7 +3,7 @@
 2. ![где взять](https://releases.comcloud.xyz/)  
 3. Для взаимодействия terraform с Yandex Cloud создается сервисный аккаунт с ролью "editor" и авторизованный ключ для него. Ключ помещается в безопасное место.  
 ## Providers.tf
-```HCL
+```hcl
 # Provider Yandex Cloud
 terraform {
     required_providers {
