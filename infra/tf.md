@@ -8,3 +8,4 @@ sudo apt update && sudo apt install terraform
 ```
 export PATH=$PATH:/home/$USER/terraform
 ```
+2. Для взаимодействия terraform с Yandex Cloud создается сервисный аккаунт с ролью "editor" и авторизованный ключ для него. Ключ помещается в безопасное место.
