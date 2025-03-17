@@ -1,6 +1,7 @@
 # Terraform
-1. ![Установка terraform:](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli?in=terraform%2Faws-get-started)  
-2. Для взаимодействия terraform с Yandex Cloud создается сервисный аккаунт с ролью "editor" и авторизованный ключ для него. Ключ помещается в безопасное место.  
+1. ![Установка terraform:](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli?in=terraform%2Faws-get-started)
+2. ![где взять](https://releases.comcloud.xyz/)  
+3. Для взаимодействия terraform с Yandex Cloud создается сервисный аккаунт с ролью "editor" и авторизованный ключ для него. Ключ помещается в безопасное место.  
 ## Providers.tf
 ```HCL
 # Provider Yandex Cloud
