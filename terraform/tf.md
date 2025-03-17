@@ -5,5 +5,5 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashi
 sudo apt update && sudo apt install terraform
 ```
 ```
-export PATH=$PATH:/home/moi/terraform
+export PATH=$PATH:/home/$USER/terraform
 ```
