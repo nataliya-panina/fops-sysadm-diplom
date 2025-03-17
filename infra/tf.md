@@ -21,4 +21,16 @@ provider "yandex" {
     service_account_key_file = file("~/.ssh/authorized_key.json") # Created for service account "terraform"
 }
 ```
+## /home/user/.terraformrc
+```hcl
+provider_installation {
+    network_mirror {
+        url = "https://terraform-mirror.yandexcloud.net/"
+        include = ["registry.terraform.io/*/*"]
+}
+    direct {
+        exclude = ["registry.terraform.io/*/*"]
+    }
+}
+```
 ![image](https://github.com/user-attachments/assets/8bd9e2fa-1084-4493-871a-9c0aa6dda5c0)
