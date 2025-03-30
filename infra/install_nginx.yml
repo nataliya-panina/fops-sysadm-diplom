@@ -1,0 +1,29 @@
+---
+# tasks file for deploi nginx
+- name: install nginx
+  apt:
+    name: nginx
+    state: latest
+    update_cache: yes
+
+- name: copy index file
+  template:
+    src: ./roles/deploy_nginx/templates/index.j2
+    dest: /var/www/html/index.html
+    mode: 755
+  notify: Restart nginx
+
+- name: Start nginx
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: Check site availability
+  uri:
+    url: http://{{ ansible_host }}
+    method: GET
+  register: result
+
+- debug:
+    var: result.status
