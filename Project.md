@@ -11,15 +11,15 @@
 
 Файлы terraform:
 
-- Провайдеры: providers.tf  
-- Сеть, подсети: network.tf  
-- Виртуальные машины: vms.tf  
-- Балансировщик нагрузки:  alb.tf  
+- Провайдеры: [providers.tf](https://github.com/nataliya-panina/fops-sysadm-diplom/blob/main/infra/providers.tf)  
+- Сеть, подсети: [network.tf](https://github.com/nataliya-panina/fops-sysadm-diplom/blob/main/infra/network.tf)  
+- Виртуальные машины: [vms.tf](https://github.com/nataliya-panina/fops-sysadm-diplom/blob/main/infra/vms.tf)  
+- Балансировщик нагрузки: [alb.tf](https://github.com/nataliya-panina/fops-sysadm-diplom/blob/main/infra/alb.tf)  
 
 ## Сайт
 
-vms.tf
-alb.tf
+vms.tf [vms.tf](https://github.com/nataliya-panina/fops-sysadm-diplom/blob/main/infra/vms.tf)  
+alb.tf  [alb.tf](https://github.com/nataliya-panina/fops-sysadm-diplom/blob/main/infra/alb.tf)  
 
 Создайте две ВМ в разных зонах, установите на них сервер nginx, если его там нет. ОС и содержимое ВМ должно быть идентичным, это будут наши веб-сервера.
 
