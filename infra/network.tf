@@ -33,3 +33,34 @@ resource "yandex_vpc_route_table" "rt" {
         gateway_id = yandex_vpc_gateway.gateway.id
     }
 }
+
+# Security group
+resource "yandex_vpc_security_group" "vm_group_sg" {
+    name = "vm-security-group"
+    network_id = yandex_vpc_network.netology.id
+    ingress {
+        description    = "Allow HTTP protocol from local subnets"
+        protocol       = "TCP"
+        port           = "80"
+        v4_cidr_blocks = ["10.0.1.0/24", "10.0.2.0/24"]
+    }
+
+    ingress {
+        description    = "Allow HTTPS protocol from local subnets"
+        protocol       = "TCP"
+        port           = "443"
+        v4_cidr_blocks = ["10.0.1.0/24", "10.0.2.0/24"]
+    }
+
+    ingress {
+        description = "Health checks from NLB"
+        protocol = "TCP"
+        predefined_target = "loadbalancer_healthchecks" # [10.0.1.0/24, 10.0.2.0/24]
+    }
+
+/*   egress {
+    description    = "Permit ANY"
+    protocol       = "ANY"
+    v4_cidr_blocks = ["0.0.0.0/0"]
+  } */
+}

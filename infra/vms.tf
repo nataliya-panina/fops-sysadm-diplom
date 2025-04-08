@@ -64,6 +64,7 @@ resource "yandex_compute_instance" "web_a" {
     network_interface {
         subnet_id = yandex_vpc_subnet.netology_a.id# Внешний интерфейс
         nat = false# Машина не имеет доступ в инет
+        self = true
     }
 }
 
@@ -73,7 +74,7 @@ resource "yandex_compute_instance" "web_b" {
     hostname = "web-b"# формирует FQDN, без него будет сгенерировано случайное имя
     platform_id = "standard-v1"# Процессор
     zone = "ru-central1-b"# Обязательно указывать зону!
-
+    
     resources {
         cores = 2# ЦПУ
         memory = 1# RAM
@@ -96,6 +97,7 @@ resource "yandex_compute_instance" "web_b" {
     network_interface {
         subnet_id = yandex_vpc_subnet.netology_b.id# Внешний интерфейс
         nat = false# Машина не имеет доступ в инет
+
     }
 }
 
@@ -135,12 +137,15 @@ resource "yandex_compute_instance" "prometheus" {
 resource "local_file" "inventory" {
     content =<<-EOF
     [bastion]
-    ${yandex_compute_instance.bastion.network_interface.0.nat_ip_address}
+    bastion: ansible_host = ${yandex_compute_instance.bastion.network_interface.0.nat_ip_address}
+    
     [webservers]
-    ${yandex_compute_instance.web_a.network_interface.0.ip_address}
-   # ${yandex_compute_instance.web_b.network_interface.0.ip_address}
+    web-a: ansible_host = ${yandex_compute_instance.web_a.network_interface.0.ip_address} 
+    web-b: ansible_host = ${yandex_compute_instance.web_b.network_interface.0.ip_address}
+
     [prometheus]
     ${yandex_compute_instance.prometheus.network_interface.0.ip_address}
+    
     [webservers:vars]
     ansible_ssh_common_args='-o ProxyCommand="ssh -p 22 -W %h:%p -q user@${yandex_compute_instance.bastion.network_interface.0.nat_ip_address}"'
     EOF

@@ -1,24 +1,25 @@
 # playbook for install and configure server nginx
 ---
 - name: install nginx and configure la page web
-  hosts: webservers
+  hosts: "webservers"
   tasks:
-  - install_nginx:
+  - name: install_nginx
     apt:
       name: nginx
       state: latest
       update_cache: yes
-  - start_service_nginx:
+  - name: start_service_nginx
     service:
       name: nginx
       state: started
       enables: yes
-  - upload_page_web:
+  - name: upload_page_web
     template:
       src: "./index.j2"
       dest: "/var/www/html/nginx/index.html"
       mode: "0555"
       notify: RestartNginx
+
   handlers:
   - name: RestartNginx
     service:
